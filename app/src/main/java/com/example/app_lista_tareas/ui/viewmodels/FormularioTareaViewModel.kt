@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FormularioTareaViewModel @Inject constructor(
+class   FormularioTareaViewModel @Inject constructor(
     private val repositorioTareas: RepositorioTareas,
     private val repositorioEtiquetas: RepositorioEtiquetas,
     savedStateHandle: SavedStateHandle

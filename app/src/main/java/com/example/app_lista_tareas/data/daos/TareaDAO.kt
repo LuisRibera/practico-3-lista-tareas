@@ -25,6 +25,9 @@ interface TareaDao {
 
     @Transaction
     @Query("SELECT * FROM tareas WHERE id = :id")
+    //flow se actualiza automáticamente cuando hay cambios en la base de datos,
+    // por lo que cualquier cambio en la tarea o sus etiquetas relacionadas se
+    // reflejará en la UI sin necesidad de volver a consultar manualmente.
     fun obtenerTareaConEtiquetasPorId(id: Int): Flow<TareaConEtiquetas?>
 
     @Transaction

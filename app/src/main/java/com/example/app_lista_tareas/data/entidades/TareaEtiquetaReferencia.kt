@@ -12,12 +12,14 @@ import androidx.room.Index
             entity = Tarea::class,
             parentColumns = ["id"],
             childColumns = ["tareaId"],
+            //limpiadora la referencia si se borra la tarea
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
             entity = Etiqueta::class,
             parentColumns = ["id"],
             childColumns = ["etiquetaId"],
+            //limpiadora la referencia si se borra la etiqueta
             onDelete = ForeignKey.CASCADE
         )
     ],

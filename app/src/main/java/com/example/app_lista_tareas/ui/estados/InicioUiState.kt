@@ -13,6 +13,7 @@ enum class OpcionOrdenamiento {
 
 data class InicioUiState(
     val listaTareas: List<TareaConEtiquetas> = emptyList(),
+    val etiquetasDisponibles: List<Etiqueta> = emptyList(),
     val textoBusqueda: String = "",
     val filtroEstado: Boolean? = null,
     val filtroPrioridad: Prioridad? = null,

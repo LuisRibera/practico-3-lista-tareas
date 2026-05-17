@@ -46,6 +46,8 @@ dependencies {
     // AndroidX Core y Ciclo de vida
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    // Lifecycle runtime for Compose - needed for collectAsStateWithLifecycle
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
     implementation(libs.androidx.activity.compose)
 
     // Compose
@@ -53,6 +55,8 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
+    // Icons extended (many material icons live here)
+    implementation("androidx.compose.material:material-icons-extended")
     implementation(libs.androidx.compose.material3)
 
     // Navegación

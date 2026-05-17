@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.app_lista_tareas.data.entidades.Etiqueta
 import com.example.app_lista_tareas.data.entidades.Prioridad
 import com.example.app_lista_tareas.data.entidades.TareaConEtiquetas
+import com.example.app_lista_tareas.repositorios.RepositorioEtiquetas
 import com.example.app_lista_tareas.repositorios.RepositorioTareas
 import com.example.app_lista_tareas.ui.estados.InicioUiState
 import com.example.app_lista_tareas.ui.estados.OpcionOrdenamiento
@@ -19,21 +20,24 @@ import javax.inject.Inject
 
 @HiltViewModel
 class InicioViewModel @Inject constructor(
-    private val repositorioTareas: RepositorioTareas
+    private val repositorioTareas: RepositorioTareas,
+    private val repositorioEtiquetas: RepositorioEtiquetas
 ) : ViewModel() {
 
     private val _filtros = MutableStateFlow(FiltrosEstado())
 
     val estadoUi = combine(
         repositorioTareas.obtenerTodasLasTareasConEtiquetas(),
+        repositorioEtiquetas.obtenerTodasLasEtiquetas(),
         _filtros
-    ) { tareas, filtros ->
+    ) { tareas, etiquetas, filtros ->
         val tareasFiltradas = tareas
             .filter { tc -> coincideConFiltros(tc, filtros) }
             .let { lista -> aplicarOrdenamiento(lista, filtros.opcionOrdenamiento) }
 
         InicioUiState(
             listaTareas = tareasFiltradas,
+            etiquetasDisponibles = etiquetas,
             textoBusqueda = filtros.textoBusqueda,
             filtroEstado = filtros.filtroEstado,
             filtroPrioridad = filtros.filtroPrioridad,

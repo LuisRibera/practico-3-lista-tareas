@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
@@ -57,11 +56,6 @@ fun DetalleTareaScreen(
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text("Detalle de Tarea") },
-                navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Atrás")
-                    }
-                },
                 actions = {
                     estadoUi.tarea?.let { tareaConEtiquetas ->
                         IconButton(onClick = { onEditarTarea(tareaConEtiquetas.tarea.id) }) {

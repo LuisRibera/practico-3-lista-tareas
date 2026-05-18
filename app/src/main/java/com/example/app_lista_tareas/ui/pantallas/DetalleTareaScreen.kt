@@ -193,6 +193,27 @@ fun DetalleTareaScreen(
                         }
                     }
 
+                    // Fecha de Creación
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            imageVector = Icons.Default.DateRange,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.secondary,
+                            modifier = Modifier.padding(end = 8.dp)
+                        )
+                        Column {
+                            Text(
+                                text = "Creada el",
+                                style = MaterialTheme.typography.labelMedium
+                            )
+                            Text(
+                                text = formatearFecha(tarea.fechaCreacion),
+                                style = MaterialTheme.typography.bodyLarge,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+
                     Spacer(modifier = Modifier.weight(1f))
 
                     Button(

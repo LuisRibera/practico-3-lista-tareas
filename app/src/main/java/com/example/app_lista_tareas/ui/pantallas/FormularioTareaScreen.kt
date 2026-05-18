@@ -192,7 +192,7 @@ fun FormularioTareaScreen(
 
     if (mostrarDatePicker) {
         val datePickerState = rememberDatePickerState(
-            initialSelectedDateMillis = estadoUi.fechaVencimiento ?: System.currentTimeMillis()
+            initialSelectedDateMillis = estadoUi.fechaVencimiento
         )
         DatePickerDialog(
             onDismissRequest = { mostrarDatePicker = false },
@@ -209,8 +209,18 @@ fun FormularioTareaScreen(
                 }
             },
             dismissButton = {
-                TextButton(onClick = { mostrarDatePicker = false }) {
-                    Text("Cancelar")
+                Row {
+                    if (estadoUi.fechaVencimiento != null) {
+                        TextButton(onClick = {
+                            viewModel.actualizarFechaVencimiento(null)
+                            mostrarDatePicker = false
+                        }) {
+                            Text("Sin fecha")
+                        }
+                    }
+                    TextButton(onClick = { mostrarDatePicker = false }) {
+                        Text("Cancelar")
+                    }
                 }
             }
         ) {

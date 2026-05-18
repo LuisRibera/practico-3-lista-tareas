@@ -24,7 +24,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SearchBar
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -147,17 +148,22 @@ fun InicioScreen(
                 )
 
                 if (mostrarBusqueda) {
-                    SearchBar(
-                        query = estadoUi.textoBusqueda,
-                        onQueryChange = { viewModel.actualizarBusqueda(it) },
-                        onSearch = { mostrarBusqueda = false },
-                        active = false,
-                        onActiveChange = { if (!it) mostrarBusqueda = false },
+                    OutlinedTextField(
+                        value = estadoUi.textoBusqueda,
+                        onValueChange = { viewModel.actualizarBusqueda(it) },
                         placeholder = { Text("Buscar por título...") },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 8.dp)
-                    ) {}
+                            .padding(horizontal = 16.dp, vertical = 8.dp),
+                        singleLine = true,
+                        trailingIcon = {
+                            if (estadoUi.textoBusqueda.isNotEmpty()) {
+                                IconButton(onClick = { viewModel.actualizarBusqueda("") }) {
+                                    Icon(Icons.Default.Close, contentDescription = "Limpiar búsqueda")
+                                }
+                            }
+                        }
+                    )
                 }
 
                 TabRow(selectedTabIndex = indexTab) {

@@ -16,7 +16,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -214,16 +213,6 @@ fun DetalleTareaScreen(
                         }
                     }
 
-                    Spacer(modifier = Modifier.weight(1f))
-
-                    Button(
-                        onClick = { onEditarTarea(tarea.id) },
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Icon(Icons.Default.Edit, contentDescription = null)
-                        Spacer(Modifier.width(8.dp))
-                        Text("Editar Tarea")
-                    }
                 }
             }
         }
@@ -235,4 +224,3 @@ private fun formatearFecha(timestamp: Long): String {
     return formato.format(Date(timestamp))
 }
 
-private fun Modifier.width(dp: androidx.compose.ui.unit.Dp) = this.padding(end = dp)

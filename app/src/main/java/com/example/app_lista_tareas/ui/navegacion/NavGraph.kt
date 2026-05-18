@@ -24,6 +24,9 @@ fun NavGraph(navController: NavHostController) {
                 },
                 onTareaClick = { tareaId ->
                     navController.navigate(Rutas.DetalleTarea.crearRuta(tareaId))
+                },
+                onGestionarEtiquetas = {
+                    navController.navigate(Rutas.GestionEtiquetas.ruta)
                 }
             )
         }
@@ -35,6 +38,7 @@ fun NavGraph(navController: NavHostController) {
             )
         ) {
             DetalleTareaScreen(
+                onNavigateBack = { navController.popBackStack() },
                 onEditarTarea = { tareaId ->
                     navController.navigate(Rutas.FormularioTarea.crearRuta(tareaId))
                 }
@@ -59,7 +63,9 @@ fun NavGraph(navController: NavHostController) {
         }
 
         composable(route = Rutas.GestionEtiquetas.ruta) {
-            GestionEtiquetasScreen()
+            GestionEtiquetasScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
         }
     }
 }
